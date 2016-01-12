@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <!--jQuery-->
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!--Angular-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+  <!--Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <!--ng-jsonresume-->
+  <script src="ng-jsonresume.js"></script>
+
+  <script>
+    angular.module('mywebsite', ['ng-jsonresume']);
+  </script>
+</head>
+
+<body ng-app="mywebsite">
+  <h1>ng-jsonresume</h1>
+  <p>With ng-jsonresume you can include a resume in your website by using the &lt;resume&gt; tag.</p>
+  <p>Example: the following code produces the result below - take a look at the source of this page to see how to use it:
+  <br><code>&lt;resume dataurl="https://rawgit.com/marko-knoebl/karuga-jsonresume/master/resume.json" templateurl="resume-template-flat.html"&gt;&lt;/resume&gt;</code><br><br>
+
+  <resume dataUrl="https://rawgit.com/marko-knoebl/karuga-jsonresume/master/resume.json" templateUrl="resume-template-flat.html"></resume>
+
+</body>
+
+</html>

@@ -1,0 +1,376 @@
+<!--This template was taken from https://github.com/erming/jsonresume-theme-flat
+  and adapted for AngularJS.
+	More potential themes can be found at
+	  http://node-modules.com/search?q=jsonresume-theme-*
+	These steps were taken to adapt for use with Angular:
+	* removing <html>, <head>, <body> tags
+	* prefixing all CSS selectors with "resume"
+	* changing the template syntax from moustache to Angular
+-->
+
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
+
+	<style type="text/css">
+resume a {
+	color: #2ecc71;
+}
+resume a:focus,
+resume a:hover {
+	color: #f1c40f;
+	text-decoration: none;
+}
+resume p {
+	line-height: 1.5;
+	margin: 0;
+}
+resume p + p {
+	margin-top: 10px;
+}
+resume h1,
+resume h2,
+resume h3,
+resume h4 {
+	margin-top: 0
+}
+resume section {
+	margin-top: 30px;
+}
+resume li {
+	line-height: 1.8;
+	list-style: none;
+}
+resume li:before {
+	content: "\f052";
+	float: left;
+	font: 13px Octicons;
+	margin-top: 6px;
+	margin-left: -20px;
+	opacity: .1;
+	position: absolute;
+}
+resume blockquote {
+	border-left: 5px solid #e7e9ec;
+	font-size: 14px;
+}
+reume em {
+	color: #95a5a6;
+	font-weight: normal;
+	font-style: normal;
+}
+resume h4 span:first-child {
+	color: #000;
+	font-weight: bold;
+}
+resume .container {
+	max-width: 750px;
+	padding: 0 30px;
+}
+resume .col-sm-6 {
+	margin-bottom: 10px;
+}
+resume .col-sm-12 h4 {
+	margin-top: 12px;
+}
+resume .col-sm-12 + .col-sm-12 {
+	margin-top: 30px;
+}
+resume #header {
+	background: #f4f6f6;
+	padding: 50px 0;
+	margin-bottom: 30px;
+}
+resume #header h2 {
+	color: #95a5a6;
+	font-size: 24px;
+}
+resume #content h3 {
+	color: #f1c40f;
+	font-size: 26px;
+	margin-top: -4px;
+}
+resume #content aside {
+	text-align: right;
+	padding-right: 30px;
+}
+resume #profiles .network {
+	text-transform: capitalize;
+}
+resume #work .position,
+resume #volunteer .position {
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+resume #education .area {
+	font-weight: bold;
+}
+resume #education .area:before {
+	content: "\f0d7";
+	font: 16px Octicons;
+	margin-right: 6px;
+}
+resume #education .studyType {
+	margin-left: 25px;
+}
+resume #awards .summary,
+resume #publications .summary {
+	margin-top: 8px;
+}
+resume #publications .website a:before {
+	content: attr(href);
+}
+
+@media (min-width: 480px) {
+	resume .strike-through {
+		border-top: 1px solid #f4f6f6;
+		height: 20px;
+		margin-top: 12px;
+		margin-bottom: -2px;
+		position: relative;
+	}
+	resume .strike-through span,
+	resume .strike-through a {
+		background: #fff;
+		position: absolute;
+	}
+	resume .strike-through span:first-child {
+		padding-right: 20px;
+		margin-top: -12px;
+	}
+	resume .strike-through span + span {
+		font-size: 14px;
+		margin-top: -10px;
+		padding-left: 20px;
+		right: 0;
+	}
+}
+@media (max-width: 768px) {
+	resume .col-sm-6:last-child {
+		margin-bottom: 0px;
+	}
+	resume #content aside {
+		margin-bottom: 20px;
+		padding-right: 0;
+		text-align: left;
+	}
+	resume #publications .website a:before {
+		content: "View publication";
+	}
+}
+@media (max-width: 480px) {
+	resume h1 {
+		font-size: 26px;
+	}
+	resume .date {
+		font-size: 14px;
+		margin-bottom: 5px;
+	}
+	resume .strike-through span:first-child {
+		margin-bottom: 7px;
+	}
+	resume .strike-through span {
+		display: block;
+	}
+	resume #header {
+		margin-bottom: 10px;
+		padding: 40px 0;
+	}
+	reume #actions {
+		display: none;
+	}
+}
+
+	</style>
+
+
+	<header id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-9 col-sm-push-3">
+					<h1>
+						{{basics.name}}
+					</h1>
+					<h2>
+						{{basics.label}}
+					</h2>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div id="content" class="container">
+
+	<section id="contact" class="row">
+		<aside class="col-sm-3">
+			<h3>Contact</h3>
+		</aside>
+		<div class="col-sm-9">
+			<div class="row">
+			<div class="col-sm-6">
+				<strong>Email</strong>
+				<div class="email"><a href="mailto:{{basics.email}}">{{basics.email}}</a></div>
+			</div>
+			<div class="col-sm-6">
+				<strong>Phone</strong>
+				<div class="phone">{{basics.phone}}</div>
+			</div>
+			<div class="col-sm-6">
+				<strong>Website</strong>
+				<div class="website">
+					<a href="{{basics.website}}">{{basics.website}}</a>
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+	<section id="about" class="row" ng-if="basics.summary">
+		<aside class="col-sm-3">
+			<h3>About</h3>
+		</aside>
+		<div class="col-sm-9">
+			<p>{{basics.summary}}</p>
+		</div>
+	</section>
+	<section id="profiles" class="row" ng-if="basics.profiles">
+		<aside class="col-sm-3">
+			<h3>Profiles</h3>
+		</aside>
+		<div class="col-sm-9">
+			<div class="row">
+				<div class="col-sm-6" ng-repeat="profile in basics.profiles">
+					<strong class="network">
+						{{profile.network}}
+					</strong>
+					<div class="username">
+						<div class="url">
+							<a href="{{profile.url}}">{{profile.username}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="work" class="row" ng-if="work">
+		<aside class="col-sm-3">
+			<h3>Work</h3>
+		</aside>
+		<div class="col-sm-9">
+			<div class="row">
+				<div class="col-sm-12" ng-repeat="work in work">
+					<h4 class="strike-through">
+						<span>{{work.company}}</span>
+						<span class="date">
+							{{work.startDate}} — {{work.endDate}}
+						</span>
+					</h4>
+					<div class="website pull-right">
+						<a href="{{work.website}}">{{work.website}}</a>
+					</div>
+					<div class="position">
+						{{work.position}}
+					</div>
+					<div class="summary">
+						<p>{{work.summary}}</p>
+					</div>
+					<h4 ng-if="work.highlights">Highlights</h4>
+					<ul class="highlights" ng-if="work.highlights">
+						<li class="bullet" ng-repeat="highlight in work.highlights">
+							{{highlight}}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="volunteer" class="row" ng-if="volunteer">
+		<aside class="col-sm-3">
+			<h3>Volunteer</h3>
+		</aside>
+		<div class="col-sm-9">
+			<div class="row">
+				<div class="col-sm-12" ng-repeat="volunteer in volunteer">
+					<h4 class="strike-through">
+						<span>{{volunteer.organization}}</span>
+						<span class="date">
+							{{volunteer.startDate}} — {{volunteer.endDate}}
+						</span>
+					</h4>
+					<div class="website pull-right">
+						<a href="{{volunteer.website}}">{{volunteer.website}}</a>
+					</div>
+					<div class="position">
+						{{volunteer.position}}
+					</div>
+					<div class="summary">
+						<p>{{volunteer.summary}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="education" class="row">
+		<aside class="col-sm-3">
+			<h3>Education</h3>
+		</aside>
+		<div class="col-sm-9">
+			<div class="row">
+			<div class="col-sm-12">
+				<h4 class="strike-through">
+					<span>Vienna Technical University</span>
+					<span class="date">
+						2006-09-22 — 2013-07-29
+					</span>
+				</h4>
+				<div class="area">
+					Teacher training program in Mathematics and Descriptive Geometry
+				</div>
+				<div class="studyType">
+					Master
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+	<section id="languages" class="row">
+		<aside class="col-sm-3">
+			<h3>Languages</h3>
+		</aside>
+		<div class="col-sm-9">
+			<div class="row">
+			<div class="col-sm-6">
+				<div class="language">
+					<strong>German</strong>
+				</div>
+				<div class="fluency">
+					Native speaker
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="language">
+					<strong>English</strong>
+				</div>
+				<div class="fluency">
+					Fluent
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="language">
+					<strong>French</strong>
+				</div>
+				<div class="fluency">
+					Intermediate
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	</div>
