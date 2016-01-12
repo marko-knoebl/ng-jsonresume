@@ -310,63 +310,44 @@ resume #publications .website a:before {
 		</div>
 	</section>
 
-	<section id="education" class="row">
+	<section id="education" class="row" ng-if="education">
 		<aside class="col-sm-3">
 			<h3>Education</h3>
 		</aside>
 		<div class="col-sm-9">
 			<div class="row">
-			<div class="col-sm-12">
+			<div class="col-sm-12" ng-repeat="education in education">
 				<h4 class="strike-through">
-					<span>Vienna Technical University</span>
+					<span>{{education.institution}}</span>
 					<span class="date">
-						2006-09-22 — 2013-07-29
+						{{education.startDate}} — {{education.endDate}}
 					</span>
 				</h4>
 				<div class="area">
-					Teacher training program in Mathematics and Descriptive Geometry
+          {{education.area}}
 				</div>
 				<div class="studyType">
-					Master
+					{{education.studyType}}
 				</div>
 			</div>
 			</div>
 		</div>
 	</section>
 
-
-
-
-	<section id="languages" class="row">
+	<section id="languages" class="row" ng-if="languages">
 		<aside class="col-sm-3">
 			<h3>Languages</h3>
 		</aside>
 		<div class="col-sm-9">
 			<div class="row">
-			<div class="col-sm-6">
-				<div class="language">
-					<strong>German</strong>
-				</div>
-				<div class="fluency">
-					Native speaker
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="language">
-					<strong>English</strong>
-				</div>
-				<div class="fluency">
-					Fluent
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="language">
-					<strong>French</strong>
-				</div>
-				<div class="fluency">
-					Intermediate
-				</div>
-			</div>
+        <div class="col-sm-6" ng-repeat="language in languages">
+          <div class="language">
+            <strong>{{language.language}}</strong>
+          </div>
+          <div class="fluency">
+            {{language.fluency}}
+          </div>
+        </div>
 			</div>
 		</div>
 	</section>
