@@ -5,7 +5,7 @@ angular.module('ng-jsonresume', [])
     return {
       restrict: 'E',
       templateUrl: function($element, $attrs) {
-        return $attrs.templateurl || 'resume-template.html';
+        return $attrs.templateurl || 'resume-template-flat.html';
       },
       controller: function($scope, $element, $attrs) {
         $http({method: 'GET', url:$attrs.dataurl || resume.json})
