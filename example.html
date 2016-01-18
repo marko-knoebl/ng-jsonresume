@@ -13,20 +13,22 @@
   <script src="ng-jsonresume.js"></script>
 
   <script>
+    // create a new module called mywebsite that uses ng-jsonresume as a dependency
     angular.module('mywebsite', ['ng-jsonresume']);
   </script>
 </head>
 
 <body ng-app="mywebsite">
-  <h1>ng-jsonresume</h1>
-  <p>With ng-jsonresume you can include a resume in your website by using the &lt;resume&gt; tag.</p>
-  <p>Example: the following code produces the result below - take a look at the source of this page to see how to use it:
-    <br><code>&lt;resume dataurl="https://rawgit.com/marko-knoebl/ng-jsonresume/master/example-resume.json"&gt;&lt;/resume&gt;</code>
-  </p>
-  <p>For now ng-jsonresume will use the flat theme from jsonresume. Other themes may become available in the future</p>
+  <div class="container">
+    <h1>ng-jsonresume</h1>
+    <p>With ng-jsonresume you can include a resume in your website by using the &lt;resume&gt; tag.</p>
+    <p>Example: the following code produces the result below - take a look at the source of this page to see how to use it:
+      <br><code>&lt;resume dataurl="example-resume.json" templateUrl="resume-template-flat.html"&gt;&lt;/resume&gt;</code>
+    </p>
+    <p>For now ng-jsonresume will use the flat theme from jsonresume. Other themes may become available in the future</p>
 
-  <resume dataUrl="https://rawgit.com/marko-knoebl/ng-jsonresume/master/example-resume.json"></resume>
-
+    <resume dataUrl="example-resume.json" templateUrl="resume-template-flat.html"></resume>
+  </div>
 </body>
 
 </html>
