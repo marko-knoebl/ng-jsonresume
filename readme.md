@@ -16,4 +16,4 @@ You can get the first two files from the git repository or install them using bo
 
 You will have to create the json file yourself by filling in your personal resume data - see http://jsonresume.org for the data format.
 
-Take a look at example.html to see how it is used.
+You can see an example of ng-jsonresume in action at https://rawgit.com/marko-knoebl/ng-jsonresume/master/example.html
