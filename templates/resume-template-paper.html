@@ -1,0 +1,527 @@
+
+<!--This template was taken from https://github.com/TimDaub/jsonresume-theme-paper
+  and adapted for AngularJS.
+  More potential themes can be found at
+    http://node-modules.com/search?q=jsonresume-theme-*
+  These steps were taken to adapt for use with Angular:
+  * removing <html>, <head>, <body>, <meta>, <title> tags
+  * prefixing all CSS selectors with "resume"
+  * changing the template syntax from moustache to Angular
+  * new css class "first-work-listing"
+  This template is mostly a proof of concept and would require some cleanup
+-->
+
+  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+
+  <style>
+
+  resume .note {
+    display:block;
+    position: absolute;
+    top:10px;
+    left:10px;
+
+    font-family: "Open Sans";
+    font-size: 0.6em;
+  }
+
+  resume .new {
+    background-color: #81C784;
+
+    border: 1px solid #757575;
+    padding: 1px;
+    border-radius: 4px;
+
+  }
+
+  /* Header */
+
+  resume header {
+    width:100%;
+    vertical-align: middle;
+    text-align: center;
+
+  }
+
+  resume .header-content {
+    display: inline-block;
+  }
+
+  resume .pic {
+    margin: 0 auto;
+    margin-top:-2.5em;
+
+    border-radius:10em;
+    height:4em;
+    width:4em;
+
+    border: 2px solid #e0e0e0;
+    transition : all 0.5s linear;
+
+  }
+
+  resume @-webkit-keyframes wiggle {
+    0%   {
+      transform: rotate(0deg);
+    }
+    25%  {
+      transform: rotate(-30deg);
+    }
+    50%  {
+      transform: rotate(15deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  resume .pic:hover {
+    /*Webkit fix*/
+    -webkit-transform: translateZ(0);
+
+    cursor:pointer;
+
+    -webkit-animation: wiggle 0.7s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+
+  resume .header-text {
+    margin-top:0.5em;
+    margin-left:1em;
+  }
+
+  resume header p {
+    text-align:center;
+    font-family: "Merriweather";
+
+    margin:0;
+
+    color: #212121;
+  }
+
+  resume .first-name {
+     font-size: 1.05em;
+  }
+
+  resume .subtitle {
+    font-family: "Merriweather";
+    padding-top:.3em;
+    font-size:0.55em;
+    font-weight:500;
+    color: #424242;
+  }
+
+  /* Information */
+
+  resume .paper {
+    margin: 0 auto;
+    margin-bottom:1em;
+
+    background-color:white;
+    width:60%;
+
+    padding:0.5em 0 0.5em 0;
+
+    border-top: 1px solid #e0e0e0;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 3px solid #e0e0e0;
+    border-radius:3px;
+  }
+
+  @media(max-width:992px) {
+    resume .paper {
+      width:80%;
+    }
+  }
+
+  /* Content Part */
+
+  resume .content-wrapper {
+    padding-right:7.25%;
+  }
+
+  resume .content {
+    display:table;
+    width:100%;
+
+    padding-top:1.5em;
+
+    /*border-top: 1px solid #eeeeee;*/
+  }
+
+  resume .content:last-child {
+    margin-bottom: 2em;
+  }
+
+  resume body > div > article > div > section:last-child {
+    padding-bottom:1.5em;
+  }
+
+  resume .row {
+      display:table-row;
+  }
+  resume .row div {
+      display:table-cell;
+  }
+
+  resume .content-cat {
+    font-family: "Merriweather";
+    font-variant:small-caps;
+    font-weight:300;
+    letter-spacing: 1px;
+
+    color: #212121;
+
+    font-size:0.975em;
+
+    text-align:center;
+    vertical-align:middle;
+
+    padding-left:6.66%;
+    width:30%;
+  }
+
+  resume .content-cat p {
+    font-size:0.55em;
+    font-weight:600;
+
+    margin-bottom:0;
+  }
+
+  resume .content-text {
+    border-left:1px solid #e0e0e0;
+    transition: border 0.66s ease-in;
+  }
+
+  resume .big-text {
+    vertical-align:top;
+  }
+
+  resume .content-text ul {
+    padding:0;
+    margin:0;
+    margin-top:0.15em;
+
+    width:85%;
+    margin-left:1.5em;
+  }
+
+  resume .content-text ul:last-child {
+    margin-bottom:0.5em;
+  }
+
+  resume .content-text ul li {
+    font-family: "Open Sans";
+    font-size:0.7em;
+
+    display:inline-block;
+
+  }
+
+  resume .content-text ul li:first-child {
+    width:35%;
+
+    color: #424242;
+
+    font-weight:600;
+  }
+
+  resume .content-text ul li a, div.content-text.work-listing.education-listing > p > strong > a {
+    text-decoration: none;
+    color: #0277bd;
+  }
+
+  resume .content-text ul li a:hover {
+    color:#4fc3f7;
+  }
+
+  resume .work-listing p {
+    font-family: "Open Sans";
+    font-size:0.7em;
+
+    color: #424242;
+
+    margin-left:2em;
+    margin-top:0.45em;
+    margin-bottom: 0.45em;
+  }
+
+  /* this was added for use in ng-jsonresume*/
+  resume .first-work-listing p:first-child {
+    margin-top:2.4em;
+  }
+
+  resume div.content-text.work-listing.education-listing > p:nth-child(2) {
+    margin-top:0.25em;
+  }
+
+  resume .work-listing .highlight {
+    font-family: "Open Sans";
+    font-size:0.7em;
+    font-weight:400;
+
+    color: #424242;
+
+    margin-left:3.25em;
+    padding-left:0.5em;
+
+    border-left:1px solid #e0e0e0;
+
+  }
+
+  resume .education-listing > .heading {
+    font-weight:600;
+
+    margin-top:0.75em;
+    margin-left:2em;
+  }
+
+  resume .education-listing > .highlight {
+    margin-left:3.25em;
+  }
+
+  resume .highlight {
+    transition: border .33s ease-in;
+  }
+
+  resume .profiles-listing ul li, .profiles-listing ul li:first-child {
+    width:32%;
+    font-weight: normal;
+  }
+
+  resume .work-content, .education-content {
+    padding-top: .75em;
+  }
+
+  resume section.content.education-content > div > div.content-cat {
+    vertical-align: top;
+  }
+
+  resume div.content-text.skills-listing > p {
+    font-family: "Open Sans";
+    font-size:0.7em;
+    font-weight:400;
+
+    margin-left: 2em;
+    margin-top: 0.45em;
+    margin-bottom: 0.45em;
+  }
+  resume
+  div.content-text.skills-listing > p > {
+    color:#212121;
+  }
+
+</style>
+
+  <div class="resume-wrapper">
+    <article class="paper">
+        <header>
+          <div class="header-content">
+            <div ng-if="basics.picture" class="header-pic" title="Wiggle Wiggle">
+              <img src="{{basics.picture}}" class="pic" />
+            </div>
+            <div class="header-text">
+              <p>
+                {{basics.name}}
+              </p>
+              <p class="subtitle">{{basics.label}}</p>
+            </div>
+          </div>
+        </header>
+        <div class="content-wrapper">
+
+          <!-- CONTACT -->
+          <section class="content">
+            <div class="row">
+              <div class="content-cat">
+               Contact
+              </div>
+              <div class="content-text">
+                <ul ng-if="basics.website">
+                  <li>Website</li>
+                  <li>{{basics.website}}</li>
+                </ul>
+
+                <ul ng-if="basics.email">
+                  <li>Email</li>
+                  <li>{{basics.email}}</li>
+                </ul>
+
+                <ul ng-if="basics.phone">
+                  <li>Phone</li>
+                  <li>{{basics.phone}}</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- LOCATION -->
+          <section ng-if="basics.location.address || basics.location.city" class="content">
+            <div class="row">
+              <div class="content-cat">
+               Location
+              </div>
+              <div class="content-text">
+                <ul ng-if="basics.location.address">
+                  <li>Address</li>
+                  <li>{{basics.location.address}}</li>
+                </ul>
+
+                <ul ng-if="basics.location.city && basics.location.postalCode">
+                  <li>Postal Code & City</li>
+                  <li>{{baiscs.location.postalCode}} {{basics.location.city}}</li>
+                </ul>
+
+                <ul ng-if="basics.location.region">
+                  <li>Region</li>
+                  <li>{{basics.location.region}}</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- LANGUAGE -->
+          <section ng-if="languages" class="content">
+            <div class="row">
+              <div class="content-cat">
+              Languages
+              </div>
+              <div class="content-text">
+                <ul ng-repeat="language in languages">
+                  <li>{{language.language}}</li>
+                  <li>{{language.fluency}}</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- PROFILES -->
+          <section ng-if="basics.profiles.length" class="content profiles">
+            <div class="row">
+              <div class="content-cat">
+              Profiles
+              </div>
+              <div class="content-text profiles-listing">
+                <ul>
+                  <li ng-repeat="profile in basics.profiles">
+                    <a href="{{profile.url}}" target="_blank">
+                        {{profile.network}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!--WORK-->
+          <section ng-repeat="work in work track by $index" class="content" ng-class="{content: true, 'work-content': $index!=0}">
+            <div class="row">
+              <div class="content-cat big-text">
+                <div ng-if="$index==0">Work Experience</div>
+                <p ng-if="work.startDate && work.endDate">
+                  {{work.startDate}} till {{work.endDate}}
+                </p>
+              </div>
+              <div ng-if="work.company && work.position" class="content-text work-listing education-listing" ng-class="{'first-work-listing': $index==0}">
+                <p ng-if="work.website">
+                  <strong>{{work.position}}</strong> at <strong><a href="{{work.website}}">{{work.company}}:</a></strong>
+                </p>
+                <p ng-if="work.summary">{{work.summary}}</p>
+                <p ng-repeat="highlight in work.highlights" class="highlight">
+                  {{highlight}}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!--volunteer-->
+          <section ng-repeat="volunteer in volunteer" class="content">
+            <div class="row">
+              <div class="content-cat big-text">
+                {{volunteer.organization}}
+                <p ng-if="volunteer.startDate && volunteer.endDate">
+                  {{volunteer.startDate}} till {{volunteer.endDate}}
+                </p>
+              </div>
+              <div class="content-text work-listing">
+                <p ng-if="volunteer.summary">
+                  {{volunteer.summary}}
+                </p>
+                <p ng-repeat="highlight in highlights" class="highlight">
+                  {{highlight}}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section ng-repeat="education in education track by $index" class="content" ng-class="{'education-content': $index != 0}">
+            <div class="row">
+              <div class="content-cat big-text">
+                <div class="content-cat big-text" ng-if="$index==0">Education</div>
+                <p ng-if="education.startDate && education.endDate">
+                  {{education.startDate}} till {{education.endDate}}
+                </p>
+              </div>
+              <div class="content-text work-listing education-listing">
+                <p ng-if="education.institution" class="heading">{{education.institution}}</p>
+                <p ng-if="education.studyType" class="highlight">
+                  {{education.studyType}}: <i>{{education.area}} ({{education.gpa}})</i>
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!--awards-->
+          <section class="content" ng-repeat="award in awards track by $index">
+            <div class="row">
+              <div class="content-cat big-text">
+                <div class="content-cat big-text" ng-if="$index==0">Awards</div>
+                <p ng-if="award.title">{{award.title}}</p>
+                <p ng-if="award.date" style="margin-top:0.25em">{{award.date}}</p>
+              </div>
+              <div class="content-text work-listing">
+                <strong ng-if="award.awarder"><p class="heading">{{award.awarder}}</p></strong>
+                <p ng-if="award.summary" class="highlight">{{award.summary}}</p>
+              </div>
+            </div>
+          </section>
+
+          <!--skills-->
+          <section class="content" ng-if="skills">
+            <div class="row">
+              <div class="content-cat">
+                Skills
+              </div>
+              <div class="content-text skills-listing">
+                <p ng-repeat="skill in skills">
+                  <span class="name" ng-if="skill.name">
+                    <strong>
+                      {{skill.name}}<span ng-if="skill.level">({{skill.level}})</span>
+                        <span ng-if="skill.keywords">:{{skill.keywords.join(', ')}}</span>
+                    </strong>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!--interests-->
+          <section class="content" ng-if="skills">
+            <div class="row">
+              <div class="content-cat">
+                Interests
+              </div>
+              <div class="content-text skills-listing">
+                <p ng-repeat="interest in interests">
+                  <span class="name">
+                    <strong ng-if="interest.name">
+                      {{interest.name}}<span ng-if="interest.keywords">:{{interest.keywords.join(', ')}}</span>
+                    </strong>
+                  </span>
+              </div>
+            </div>
+          </section>
+        </div>
+    </article>
+  </div>

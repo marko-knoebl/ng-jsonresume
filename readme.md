@@ -8,9 +8,9 @@ It provides a custom HTML tag that can be used like this:
 
 # Installation and use
 
-In order to use ng-jsonresume you will need the files ng-jsonresume.js, a template file (resume-template-flat.html is the only one available at the moment) and your own json resume file.
+In order to use ng-jsonresume you will need the files ng-jsonresume.js, a template file and your own json resume file. There are two templates available at the moment: "flat" and "paper".
 
-You can get the first two files from the git repository or install them using bower:
+You can get the javascript and templates from the git repository or install them using bower:
 
 `bower install ng-jsonresume`
 
