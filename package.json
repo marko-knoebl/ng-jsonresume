@@ -1,0 +1,21 @@
+{
+  "name": "ng-jsonresume",
+  "version": "0.0.3",
+  "description": "Angular 1 directive to include JSON resumes",
+  "main": "ng-jsonresume.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marko-knoebl/ng-jsonresume.git"
+  },
+  "keywords": [
+    "angular1", "jsonresume"
+  ],
+  "author": "Marko Knöbl <marko.kn@gmail.com> (http://karuga.eu/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marko-knoebl/ng-jsonresume/issues"
+  }
+}
